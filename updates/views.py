@@ -1,4 +1,3 @@
-from django.core.serializers import serialize
 
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
@@ -34,21 +33,15 @@ class JsonCBV(View):
 
 class JsonCBV2(JsonResponseMixin, View):
     def get(self, request, *args, **kwargs):
-        data = {
-        "count":100,
-        "content": "Some new content",
-        }
-
-        return self.render_to_json_response(data)
+        
+        obj = UpdateModel.objects.all()
+        json_data = obj.serialize()
+        return HttpResponse(json_data,content_type='application/json')
+        
 
 
 class SerializedListView(View):
-     def get(self,request,*args,**kwargs):
-
-        qs = UpdateModel.objects.all()
-        data = serialize("json",qs,fields=('user','content'))
-        # data = {
-        # "count":100,
-        # "content": "Some new content",
-        # }
-        return JsonResponse(data,safe=False)
+    def get(self,request,*args,**kwargs):
+        json_data = UpdateModel.objects.all().serialize()
+        return HttpResponse(json_data,content_type='application/json')
+      
