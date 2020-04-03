@@ -11,7 +11,7 @@ def upload_update_image(instance, filename):
 class UpdateQuerySet(models.QuerySet):
     def serialize(self):
         qs = self
-        return serialize('json',qs, fields=('user','content','image'))
+        return serialize('json',qs, fields=('user','content','image','id','timestamp'))
 
 class UpdateManager(models.Manager):
     def get_queryset(self):
@@ -30,4 +30,4 @@ class Updates(models.Model):
         return self.content
 
     def serialize(self):
-        return serialize("json", [self], fields=('user','content','image')) 
+        return serialize("json", [self], fields=('id','content','image','timestamp')) 
