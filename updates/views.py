@@ -31,10 +31,10 @@ class JsonCBV(View):
 
 
 
-class JsonCBV2(JsonResponseMixin, View):
+class SerializedDetailView(JsonResponseMixin, View):
     def get(self, request, *args, **kwargs):
         
-        obj = UpdateModel.objects.all()
+        obj = UpdateModel.objects.get(id=4)
         json_data = obj.serialize()
         return HttpResponse(json_data,content_type='application/json')
         
