@@ -28,4 +28,33 @@ def create_update():
         return r.json()
     return r.text
 
-print(create_update())
+# print(create_update())
+
+def do_obj_update():
+    data = {
+        "content":"Another more cool content",
+    }
+    r = requests.put(BASE_URL+ENDPOINT+"3/",data=data)
+
+    #print(r.headers)
+    print(r.status_code)
+    if r.status_code == requests.codes.ok:
+        #print(r.json)
+        return r.json()
+    return r.text
+
+def do_obj_update():
+    data = {
+        "user":1,
+        "content":"Another more cool content",
+    }
+    r = requests.put(BASE_URL+ENDPOINT+"3/",data=data)
+
+    #print(r.headers)
+    print(r.status_code)
+    if r.status_code == requests.codes.ok:
+        #print(r.json)
+        return r.json()
+    return r.text
+
+print(do_obj_update())
