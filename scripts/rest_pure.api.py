@@ -19,7 +19,7 @@ def create_update():
         'user':1,
         "content":"Another new cool update",
     }
-    r = requests.delete(BASE_URL+ENDPOINT,data=data)
+    r = requests.get(BASE_URL+ENDPOINT,data=data)
 
     print(r.headers)
     print(r.status_code)
