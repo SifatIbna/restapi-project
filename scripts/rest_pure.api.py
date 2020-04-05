@@ -33,9 +33,10 @@ def create_update():
 
 def do_obj_update():
     data = {
+        "id":8,
          "content":"Bro Ki obostha",
     }
-    r = requests.put(BASE_URL+ENDPOINT+"10/",data=json.dumps(data))
+    r = requests.put(BASE_URL+ENDPOINT,data=json.dumps(data))
 
     #print(r.headers)
     print(r.status_code)
@@ -46,9 +47,9 @@ def do_obj_update():
 
 def do_obj_delete():
     data = {
-        "content":"Another more cool content",
+        'id':8
     }
-    r = requests.delete(BASE_URL+ENDPOINT+"6/")
+    r = requests.delete(BASE_URL+ENDPOINT,data = json.dumps(data))
 
     #print(r.headers)
     print(r.status_code)
