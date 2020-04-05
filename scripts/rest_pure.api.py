@@ -15,26 +15,27 @@ def get_list():
         # return data
 
 def create_update():
-    data = {
+    new_data = {
         'user':1,
-        "content":"",
+        "content":"Hey cool",
     }
-    r = requests.post(BASE_URL+ENDPOINT+"3/",data=data)
+    
+    r = requests.post(BASE_URL+ENDPOINT, data=json.dumps(new_data))
 
     print(r.headers)
     print(r.status_code)
     if r.status_code == requests.codes.ok:
-        #print(r.json)
+        print(r.json)
         return r.json()
     return r.text
 
-# print(create_update())
+print(create_update())
 
 def do_obj_update():
     data = {
         "content":"Another more cool content",
     }
-    r = requests.put(BASE_URL+ENDPOINT+"3/",data=data)
+    r = requests.put(BASE_URL+ENDPOINT+"3/",data=json.dumps(data))
 
     #print(r.headers)
     print(r.status_code)
@@ -43,12 +44,12 @@ def do_obj_update():
         return r.json()
     return r.text
 
-def do_obj_update():
+def do_obj_delete():
     data = {
         "user":1,
         "content":"Another more cool content",
     }
-    r = requests.put(BASE_URL+ENDPOINT+"3/",data=data)
+    r = requests.put(BASE_URL+ENDPOINT+"3/",data=json.dumps(data))
 
     #print(r.headers)
     print(r.status_code)
@@ -57,4 +58,4 @@ def do_obj_update():
         return r.json()
     return r.text
 
-print(do_obj_update())
+# print(do_obj_update())

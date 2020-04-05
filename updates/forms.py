@@ -6,6 +6,7 @@ class UpdateModelForm(forms.ModelForm):
         model = UpdateModel
         fields = [
             'user',
+            "content",
         ]
     def clean(self,*args,**kwargs):
         data  =self.cleaned_data

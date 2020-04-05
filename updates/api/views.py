@@ -8,6 +8,8 @@ from updates.models import Updates as UpdateModel
 from .mixins import CSRFExemptMixin
 from restAPI.mixins import HttpResponseMixin
 
+from .utils import is_json
+
 class UpdateModelDetailAPIView(HttpResponseMixin,CSRFExemptMixin,View):
 
     is_json = True
@@ -46,6 +48,13 @@ class UpdateModelDetailAPIView(HttpResponseMixin,CSRFExemptMixin,View):
             error_data = json.dumps({"message":"Update not found"})
             return self.render_to_response(error_data,status=404)
 
+
+        valid_json = is_json(request.body)
+        if not valid_json:
+            error_data = json.dumps({"message":"Invalid Data Sent, please sent using JSON"})
+            return self.render_to_response(error_data,status=400)
+
+
         json_data = json.dumps({"message":"Not Found"})
         return self.render_to_response(json_data)
 
@@ -70,7 +79,15 @@ class UpdateModelListAPIView(HttpResponseMixin,CSRFExemptMixin,View):
 
     def post(self,request,*args, **kwargs):
         # print(request.POST)
-        form = UpdateModelForm(request.POST)
+        # print(request.body)
+        valid_json = is_json(request.body)
+        print(valid_json)
+        if not valid_json:
+            error_data = json.dumps({"message":"Invalid Data Sent, please sent using JSON"})
+            return self.render_to_response(error_data,status=400)
+
+        data = json.loads(request.body)
+        form = UpdateModelForm(data)
 
         if form.is_valid():
             obj = form.save(commit=True)
