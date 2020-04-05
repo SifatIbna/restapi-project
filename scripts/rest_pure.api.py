@@ -10,16 +10,16 @@ def get_list():
     data = r.json()
     # print(data)
     for obj in data:
-        r2 = requests.get(BASE_URL + ENDPOINT + str(obj['pk']))
-        # print(r2.json())
-        return data
+        r2 = requests.post(BASE_URL + ENDPOINT+"3/" + str(obj['pk']))
+        print(r2.json())
+        # return data
 
 def create_update():
     data = {
         'user':1,
-        "content":"Another new cool update",
+        "content":"",
     }
-    r = requests.get(BASE_URL+ENDPOINT,data=data)
+    r = requests.post(BASE_URL+ENDPOINT+"3/",data=data)
 
     print(r.headers)
     print(r.status_code)
