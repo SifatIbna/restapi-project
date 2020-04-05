@@ -1,7 +1,7 @@
 from django.core.serializers import serialize
 from django.conf import settings
 from django.db import models
-
+import json
 # Create your models here.
 
 
@@ -20,7 +20,7 @@ class UpdateManager(models.Manager):
 class Updates(models.Model):
     user            = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.DO_NOTHING,)
     content         = models.TextField()
-    #image           = models.ImageField(upload_to=upload_update_image,blank=True,null=True)
+    # image           = models.ImageField(upload_to=upload_update_image,blank=True,null=True)
     timestamp       = models.DateTimeField(auto_now_add=True)
     updated         = models.DateTimeField(auto_now=True)
 
@@ -30,4 +30,18 @@ class Updates(models.Model):
         return self.content
 
     def serialize(self):
-        return serialize("json", [self], fields=('id','content','image','timestamp')) 
+        # return serialize("json", [self], fields=('id','content','image','timestamp')) 
+        # try:
+        #     image = self.image.url
+        # except:
+        #     image = ""
+
+        data = {
+            "id":self.pk,
+            "content":self.content,
+            "user":self.user_id,
+            # "image":image
+        }
+
+        new_data = json.dumps(data)
+        return new_data
