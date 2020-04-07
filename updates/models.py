@@ -20,7 +20,7 @@ class UpdateManager(models.Manager):
 class Updates(models.Model):
     user            = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.DO_NOTHING,)
     content         = models.TextField()
-    # image           = models.ImageField(upload_to=upload_update_image,blank=True,null=True)
+    #image           = models.ImageField(upload_to=upload_update_image,blank=True,null=True)
     timestamp       = models.DateTimeField(auto_now_add=True)
     updated         = models.DateTimeField(auto_now=True)
 
