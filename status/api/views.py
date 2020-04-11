@@ -38,5 +38,39 @@ class StatusCreateAPIView(generics.CreateAPIView):
     queryset                = Status.objects.all()
     serializer_class        = StatusSerializer
     
+class StatusDetailAPIView(generics.RetrieveAPIView):
+    permission_classes      =[]
+    authentication_classes  =[]
+    queryset                = Status.objects.all()
+    serializer_class        = StatusSerializer
 
-    
+    # lookup_field            ='id'
+
+    def get_object(self, *args,**kwargs):
+        kwargs = self.kwargs
+        kw_id = kwargs.get('id')
+        return Status.objects.get(id=kw_id)
+
+
+    '''
+        in urls.py if you want to use id , you have to use lookup_field or get_object method to get the id
+
+        or
+
+        just use 'pk' in urls.py
+
+    '''
+
+class StatusUpdateAPIView(generics.UpdateAPIView):
+    permission_classes      =[]
+    authentication_classes  =[]
+    queryset                = Status.objects.all()
+    serializer_class        = StatusSerializer
+    lookup_field            ='id'
+
+class StatusDeleteAPIView(generics.DestroyAPIView):
+    permission_classes      =[]
+    authentication_classes  =[]
+    queryset                = Status.objects.all()
+    serializer_class        = StatusSerializer
+    lookup_field            ='id'
