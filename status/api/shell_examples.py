@@ -3,6 +3,8 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
 from status.api.serializers import StatusSerializer
+from status.api.serializers import CustomSerializer
+
 from status.models import Status
 
 '''
@@ -61,3 +63,9 @@ create_obj_serializer = StatusSerializer(data = data)
 create_obj_serializer.is_valid()
 create_obj=create_obj_serializer.save()
 print(create_obj)
+
+data = {'email':"sifat@gmail.com",'content':"please delete me"}
+create_obj_serializer = CustomSerializer(data=data)
+if create_obj_serializer.is_valid():
+    data = create_obj_serializer.data
+    print(data)
