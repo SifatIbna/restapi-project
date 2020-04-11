@@ -32,4 +32,11 @@ class StatusAPIView(generics.ListAPIView):
 
         return qs
 
+class StatusCreateAPIView(generics.CreateAPIView):
+    permission_classes      =[]
+    authentication_classes  =[]
+    queryset                = Status.objects.all()
+    serializer_class        = StatusSerializer
+    
+
     
