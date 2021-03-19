@@ -1,6 +1,6 @@
 certifi==2019.11.28
 chardet==3.0.4
-Django==2.2.11
+Django==2.2.18
 django-filter==2.2.0
 djangorestframework==3.11.0
 idna==2.9
