@@ -1,7 +1,7 @@
 certifi==2022.12.7
 chardet==3.0.4
 Django==2.2.11
-django-filter==2.2.0
+django-filter==2.4.0
 djangorestframework==3.11.0
 idna==2.9
 Markdown==3.2.1
